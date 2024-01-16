@@ -44,6 +44,16 @@ module Api
       render json: { message: I18n.t('common.errors.record_not_uniq_error') }, status: :forbidden
     end
 
+    def render_token_blank_error
+      render json: { error: "Token is required." }, status: :bad_request
+    end
+
+    def render_token_invalid_or_expired_error
+      render json: { error: "Invalid or expired token." }, status: :not_found
+    end
+
+    # =======End private methods======
+
     def custom_token_initialize_values(resource, client)
       token = CustomAccessToken.create(
         application_id: client.id,
