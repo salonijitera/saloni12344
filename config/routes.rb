@@ -6,13 +6,9 @@ Rails.application.routes.draw do
   get '/health' => 'pages#health_check'
   get 'api-docs/v1/swagger.yaml' => 'swagger#yaml'
 
-  # Existing route for updating user profile
-  put 'api/users/:id/profile', to: 'users#update'
-
-  # Add new route for user registration
-  namespace :api, defaults: { format: :json } do
-    post 'users/register', to: 'users#register'
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    put '/users/:id/shop', to: 'users#update_shop'
+    put '/users/:id/profile', to: 'users#update'
   end
-
-  # ... other existing routes can be added here
 end
