@@ -1,3 +1,4 @@
+require 'user_service'
 class Api::UsersController < ApplicationController
   before_action :doorkeeper_authorize!, except: [:verify_email]
   before_action :set_user, only: [:update, :update_shop, :verify_email]
